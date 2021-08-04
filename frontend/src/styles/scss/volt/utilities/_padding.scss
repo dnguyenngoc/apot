@@ -1,0 +1,15 @@
+
+@each $size, $value in $pds {
+	.pds-top-#{$size} {
+		padding-top: $value;
+	}
+    .pds-right-#{$size} {
+		padding-right: $value;
+	}
+    .pds-bottom-#{$size} {
+		padding-bottom: $value;
+	}
+    .pds-left-#{$size} {
+		padding-left: $value;
+	}
+}

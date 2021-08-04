@@ -1,0 +1,15 @@
+
+@each $size, $value in $pds {
+	.mgs-top-#{$size} {
+		margin-top: $value;
+	}
+    .mgs-right-#{$size} {
+		margin-right: $value;
+	}
+    .mgs-bottom-#{$size} {
+		margin-bottom: $value;
+	}
+    .mgs-left-#{$size} {
+		margin-left: $value;
+	}
+}

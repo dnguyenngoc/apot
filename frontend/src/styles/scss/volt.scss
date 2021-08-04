@@ -1,0 +1,133 @@
+// =========================================================
+// * Volt React Dashboard
+// =========================================================
+
+// * Product Page: https://themesberg.com/product/dashboard/volt-react
+// * Copyright 2021 Themesberg (https://www.themesberg.com)
+// * Official Repository: https://github.com/themesberg/volt-react-dashboard
+// * License: MIT License (https://themesberg.com/licensing)
+
+// * Designed and coded by https://themesberg.com
+
+// =========================================================
+
+// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
+
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800&display=swap');
+
+// Bootstrap mixins and functions
+// @import "../../../node_modules/bootstar";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/functions";
+
+// Change variables here
+@import "volt/variables";
+
+// Bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// Vendor
+@import "volt/vendor";
+
+// volt mixins & functions
+@import "volt/mixins";
+@import "volt/functions";
+
+// Utilities
+@import "volt/reboot";
+@import "volt/utilities";
+
+// Layout
+@import "volt/layout";
+
+// Components
+@import "volt/components";
+
+// write your custom styles here!
+
+/* For pdf */
+.react-pdf__Page {
+    margin-top: 10px;
+
+  }
+
+
+  .react-pdf__Page__annotations.annotationLayer {
+    padding: 10px;
+  }
+  
+  .react-pdf__Page__canvas {
+    margin: 0 auto;
+
+  }
+  
+  /* For all pages */
+  .all-page-container {
+    height: 100%;
+    max-height: 500px;
+    min-width: 900px;
+    overflow: auto;
+  }
+  
+
+
+.padding-top{
+    padding-top: 20rem;
+}
+.myContainter {
+    display: block;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    font-size: 1rem;
+    .react-datepicker-wrapper{
+        width: 100%;
+        .react-datepicker__input-container{
+             width: 100%;
+            .react-datepicker-ignore-onclickoutside{
+                display: block;
+                width: 100%;
+                padding: 0.55rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #66799e;
+                background-color: #ffffff;
+                background-clip: padding-box;
+                border: 0.0625rem solid #d1d7e0;
+                appearance: none;
+                border-radius: 0.5rem;
+                word-wrap: break-word;
+                letter-spacing: normal;
+                word-spacing: normal;
+                text-transform: none;
+                text-indent: 0px;
+                text-transform: none;
+                text-shadow: none;
+            }
+            .myDatePicker{
+                display: block;
+                width: 100%;
+                padding: 0.55rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #66799e;
+                background-color: #ffffff;
+                background-clip: padding-box;
+                border: 0.0625rem solid #d1d7e0;
+                appearance: none;
+                border-radius: 0.5rem;
+                word-wrap: break-word;
+                letter-spacing: normal;
+                word-spacing: normal;
+                text-transform: none;
+                text-indent: 0px;
+                text-shadow: none;
+                text-transform: none;
+            }
+        }
+    }
+   
+  }
+  
+  
