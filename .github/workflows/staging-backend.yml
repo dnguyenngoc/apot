@@ -38,25 +38,25 @@ jobs:
       run: |
         docker push $DOCKERHUB_USERNAME/$PROJECT_NAME:$BACKEND
   
-  build-frontend:
-    name: Building frontend production
-    runs-on: ubuntu-latest
-    steps:  
+  # build-frontend:
+  #   name: Building frontend production
+  #   runs-on: ubuntu-latest
+  #   steps:  
 
-    # [Step-1] check config git
-    - uses: actions/checkout@v2
+  #   # [Step-1] check config git
+  #   - uses: actions/checkout@v2
 
-    # [Step-2] login dockerhub container
-    - name: Login to DockerHub Registry
-      run: |
-        echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+  #   # [Step-2] login dockerhub container
+  #   - name: Login to DockerHub Registry
+  #     run: |
+  #       echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
     
-    # [Step-3] buid and tag image from Dockerfile
-    - name: Build and tag the image
-      run: |
-        docker build -t $FRONTEND -t $DOCKERHUB_USERNAME/$PROJECT_NAME:$FRONTEND ./frontend/
+  #   # [Step-3] buid and tag image from Dockerfile
+  #   - name: Build and tag the image
+  #     run: |
+  #       docker build -t $FRONTEND -t $DOCKERHUB_USERNAME/$PROJECT_NAME:$FRONTEND ./frontend/
     
-    # [Step-4] Push image to docker hub
-    - name: Push image to DockerHub
-      run: |
-        docker push $DOCKERHUB_USERNAME/$PROJECT_NAME:$FRONTEND
+  #   # [Step-4] Push image to docker hub
+  #   - name: Push image to DockerHub
+  #     run: |
+  #       docker push $DOCKERHUB_USERNAME/$PROJECT_NAME:$FRONTEND
