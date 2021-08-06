@@ -2,11 +2,22 @@ version: '3.8'
 
 services:
 
+  # rabbitmq:
+  #   image: rabbitmq:latest
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
+  #   ports:    
+  #     - "5672:5672"
+
+  redis:
+    image: redis:6-alpine
+
   backend:
-    build: ./backend
+    image: duynguyenngoc/apot:backend
     ports:
       - 8081:8081
-    command: uvicorn main:app --host 0.0.0.0 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8081 --reload
     volumes:
       - ./backend/app:/app
     environment:
@@ -16,8 +27,8 @@ services:
       - redis
 
   worker:
-    build: ./backend
-    command: celery worker --app=worker.celery --loglevel=info --logfile=logs/celery.log
+    image: duynguyenngoc/apot:backend
+    command: celery -A worker.celery worker --loglevel=info --logfile=logs/celery.log
     volumes:
       - ./backend/app:/app
     environment:
@@ -27,12 +38,11 @@ services:
       - backend
       - redis
 
-  redis:
-    image: redis:6-alpine
+
 
   dashboard:
     build: ./backend
-    command:  celery flower --app=worker.celery --port=5555 --broker=redis://redis:6379/0
+    command: ["celery", "flower", "-A  worker.celery", "--broker=redis://redis:6379/0", "--port=5555"]  
     ports:
       - 5555:5555
     environment:

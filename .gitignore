@@ -1,8 +1,10 @@
 # backend
 __pycache__
+logs/fastapi/*
 
 # noteboock
 .ipynb_checkpoints
+
 
 
 # frontend
