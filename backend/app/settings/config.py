@@ -1,9 +1,18 @@
 import os
 import configparser
+import datetime
+import pytz 
 
 
 cfg = configparser.ConfigParser()
 cfg.read('./env-stag.ini')
+
+
+#=========================================================================
+#                           TIMING CONFIG
+#=========================================================================
+u = datetime.datetime.utcnow()
+u = u.replace(tzinfo=pytz.timezone("Asia/Ho_Chi_Minh"))
 
 
 #=========================================================================

@@ -1,10 +1,10 @@
-import joblib
-import os
-
-MODEL_PATH = os.environ['MODEL_PATH']
+from recognition import TextRecognition
 
 
-class OcrModel:
+MODEL_PATH = './worker/ml/config/transformerocr.pth'
+
+
+class OcrModel(object):
 
     """ Wrapper for loading and serving pre-trained model"""
 
@@ -13,16 +13,18 @@ class OcrModel:
 
     @staticmethod
     def _load_model_from_path(path):
-        model = joblib.load(path)
-        return model
+        return TextRecognition(path_to_checkpoint=path)
 
-    def predict(self, image, return_option='Prob'):
+
+    def predict(self, image, return_option=''):
         """
         Make batch prediction on list of preprocessed feature dicts.
         Returns class probabilities if 'return_options' is 'Prob', otherwise returns class membership predictions
         """
-        if return_option == 'Prob':
-            predictions = self.model.predict_proba(image)
+        if return_option == 'batch':
+            predictions = self.model.predict_on_batch(image)
         else:
             predictions = self.model.predict(image)
         return predictions
+
+   

@@ -1,37 +1,65 @@
-from celery.app import task
-from celery.result import AsyncResult
-from fastapi import Body, FastAPI, Form, Request
-from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi import File, UploadFile
+from fastapi import FastAPI
+from settings import config
+import logging
+from logging.handlers import TimedRotatingFileHandler
+from fastapi.middleware.cors import CORSMiddleware
+from databases.db import Session
+from starlette.requests import Request
+from api.routers import v1
 
 
-# from worker.tasks import create_task
+# ++++++++++++++++++++++++++++++++++++++++++++ DEFINE APP +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+app = FastAPI(title=config.PROJECT_NAME, openapi_url="/api/openapi.json", docs_url="/api/docs", redoc_url="/api/redoc")
 
 
-from worker.tasks import predict_ocr_single
+# ++++++++++++++++++++++++++++++++++++++++++++ HANDLE LOG FILE +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+handler = TimedRotatingFileHandler('logs/fastapi/{}-{}-{}_{}h-00p-00.log'.format(
+    config.u.year, config.u.month, config.u.day , config.u.hour), when="midnight", interval=1, encoding='utf8')
+handler.suffix = "%Y-%m-%d"
+handler.setFormatter(formatter)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logger.addHandler(handler)
 
 
-# move to entity api
-from pydantic import BaseModel
-class OcrResponse(BaseModel):
-    """ Celery task representation """
-    task_id: str
-    status: str
-
-class PredictionResponse(BaseModel):
-    task_id: str
-    status: str
-    probability: str
+# ++++++++++++++++++++++++++++++++++++++++++++ ROUTER CONFIG ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+app.include_router(v1.router, prefix="/api/v1")
 
 
-app = FastAPI()
+# ++++++++++++++++++++++++++++++++++++++++++++ CORS MIDDLEWARE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+origins = [
+    "http://{host}".format(host=config.HOST_NAME),
+    "http://{host}:{port}".format(host=config.HOST_NAME, port = config.BE_PORT),
+    "http://{host}:{port}".format(host=config.HOST_NAME, port = config.FE_PORT)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ++++++++++++++++++++++++++++++++++++++++++++++ DB CONFIG ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@app.middleware("http")
+async def db_session_middleware(request: Request, call_next):
+    request.state.db = Session()
+    response = await call_next(request)
+    request.state.db.close()
+    return response
+
+
+
+# from fastapi.staticfiles import StaticFiles
+# from fastapi.templating import Jinja2Templates
+# from fastapi import File, UploadFile
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 # templates = Jinja2Templates(directory="templates")
 
 
-
+# from worker.tasks import create_task
 # @app.get("/")
 # def home(request: Request):
 #     return templates.TemplateResponse("home.html", context={"request": request})
@@ -55,22 +83,3 @@ app = FastAPI()
 #     return JSONResponse(result)
 
 
-@app.post('/ocr/predict', response_model=OcrResponse, status_code=202)
-async def ocr(file: UploadFile = File(...)):
-    """Create celery prediction task. Return task_id to client in order to retrieve result"""
-
-    image = file # fix load file to image and bla bla here
-    task_id = predict_ocr_single.delay(image)
-    return {'task_id': str(task_id), 'status': 'Processing'}
-
-
-@app.get('/ocr/result/{task_id}', response_model=PredictionResponse, status_code=200,
-         responses={202: {'model': OcrResponse, 'description': 'Accepted: Not Ready'}})
-async def ocr_result(task_id):
-    """Fetch result for given task_id"""
-    task = AsyncResult(task_id)
-    if not task.ready():
-        print(app.url_path_for('ocr'))
-        return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
-    result = task.get()
-    return {'task_id': task_id, 'status': 'Success', 'probability': str(result)}

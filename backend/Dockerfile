@@ -18,6 +18,10 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies
 RUN pip install --upgrade pip
 
+
+RUN apt-get update
+RUN apt-get install libsm6 libxext6  -y
+
 RUN pip3 install pipenv
 COPY Pipfile* /app/
 

@@ -41,6 +41,7 @@ class OcrPredictTask(Task):
           base=OcrPredictTask,
           path=('worker.ml.model', 'OcrModel'),
           name='{}.{}'.format(__name__, 'Ocr'))
+          
 
 def predict_ocr_single(self, image):
     """
