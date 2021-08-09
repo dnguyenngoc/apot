@@ -1,22 +1,21 @@
-from recognition import TextRecognition
-
-
-MODEL_PATH = './worker/ml/config/transformerocr.pth'
+import logging
+from worker.ml.recognition import TextRecognition
 
 
 class OcrModel(object):
 
     """ Wrapper for loading and serving pre-trained model"""
 
-    def __init__(self):
-        self.model = self._load_model_from_path(MODEL_PATH)
+    def __init__(self, path_to_checkpoint):
+        self.model = self._load_model_from_path(path_to_checkpoint)
+
 
     @staticmethod
     def _load_model_from_path(path):
         return TextRecognition(path_to_checkpoint=path)
 
 
-    def predict(self, image, return_option=''):
+    def predict_text(self, image, return_option='normal'):
         """
         Make batch prediction on list of preprocessed feature dicts.
         Returns class probabilities if 'return_options' is 'Prob', otherwise returns class membership predictions

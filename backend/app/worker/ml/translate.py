@@ -2,11 +2,9 @@ import torch
 import numpy as np
 from PIL import Image
 from torch.nn.functional import log_softmax
-import cv2
 from vietocr.model.transformerocr import VietOCR
 from vietocr.model.vocab import Vocab
 from vietocr.model.beam import Beam
-
 import math
 
 

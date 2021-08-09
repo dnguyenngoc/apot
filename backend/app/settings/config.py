@@ -8,6 +8,34 @@ cfg = configparser.ConfigParser()
 cfg.read('./env-stag.ini')
 
 
+REDIS_HOST = os.getenv("REDIS_HOST", "redis")
+REDIS_PORT = os.getenv("REDIS_PORT", "6379")
+REDIS_PASS = os.getenv("REDIS_PASS", "password")
+REDIS_DB = os.getenv("REDIS_DB_BACKEND", "0")
+
+RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "broker")
+RABBITMQ_PORT = os.getenv("RABBITMQ_PORT", "5672")
+RABBITMQ_USER = os.getenv("RABBITMQ_USER", "guest")
+RABBITMQ_PASS = os.getenv("RABBITMQ_PASS", "guest")
+RABBITMQ_VHOST = os.getenv("RABBITMQ_VHOST", "")
+
+
+# RabbitMQ connection string: amqp://user:pass@localhost:5672/myvhost
+BROKER = "amqp://{userpass}{hostname}{port}{vhost}".format(
+    hostname=RABBITMQ_HOST,
+    userpass=RABBITMQ_USER + ":" + RABBITMQ_PASS + "@" if RABBITMQ_USER else "",
+    port=":" + RABBITMQ_PORT if RABBITMQ_PORT else "",
+    vhost="/" + RABBITMQ_VHOST if RABBITMQ_VHOST else ""
+)
+
+REDIS_BACKEND = "redis://{password}{hostname}{port}{db}".format(
+    hostname=REDIS_HOST,
+    password=':' + REDIS_PASS + '@' if REDIS_PASS else '',
+    port=":" + REDIS_PORT if REDIS_PORT else "",
+    db="/" + REDIS_DB if REDIS_DB else ""
+)
+
+
 #=========================================================================
 #                           TIMING CONFIG
 #=========================================================================
