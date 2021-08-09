@@ -44,7 +44,7 @@ def get_lenght_image(
 ):
     task = ml.send_task(
         name=TASKS['ocr'],
-        kwargs={'file_path': data.file_path},
+        kwargs={'file_path': data.file_path, 'action_type': data.action_type},
         queue='ml'
     )
     if data.callback:

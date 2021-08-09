@@ -1,14 +1,15 @@
 from logging import log
 import logging
-from os import path
 from celery import Celery
 from celery import Celery, states
 from celery.exceptions import Ignore
-import cv2
 import traceback
+
+from numpy.lib.type_check import imag
 from worker.redis import is_backend_running, get_backend_url
 from worker.broker import is_broker_running, get_broker_url
 from worker.ml.model import OcrModel
+from helpers.image import read_from_path, read_from_url
 
 
 if not is_backend_running():
@@ -29,7 +30,7 @@ MODEL_PATH = './worker/ml/config/transformerocr.pth'
 
 
 @ml.task(bind=True, name="ml.predict_ocr")
-def predict_ocr(self, file_path: str):  
+def predict_ocr(self, file_path: str, action_type: str):  
     try:
         ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
     except Exception as e:
@@ -46,7 +47,10 @@ def predict_ocr(self, file_path: str):
         raise Ignore()
 
     try:
-        image= cv2.imread(file_path)
+        if action_type == 'path':
+            image= read_from_path(file_path)
+        else:
+            image = read_from_url(file_path)
         data = ocr.predict_text(image=image, return_option='normal')
     except Exception as e:
         logging.error('Can not load predict: {}'.format(str(e)))

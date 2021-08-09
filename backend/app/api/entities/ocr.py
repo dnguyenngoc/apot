@@ -3,7 +3,8 @@ from typing import Any, Optional, List
 
 
 class UrlItem(BaseModel):
-    file_path: str
+    file_path: str = './1.jpg'
+    action_type: str = 'path'
     callback: bool = False
 
 
