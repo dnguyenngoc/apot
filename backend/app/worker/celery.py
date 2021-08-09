@@ -9,7 +9,8 @@ import traceback
 from worker.redis import is_backend_running, get_backend_url
 from worker.broker import is_broker_running, get_broker_url
 from worker.ml.model import OcrModel
-
+import numpy as np
+from PIL import Image
 
 if not is_backend_running():
     exit()
@@ -28,11 +29,8 @@ MODEL_PATH = './worker/ml/config/transformerocr.pth'
 
 @ml.task(bind=True, name="ml.predict_ocr")
 def predict_ocr(self, file_path: str):  
-
-    ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
-
     try:
-        pass
+        ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
     except Exception as e:
         logging.error('Can not load model: {}'.format(str(e)))
         self.update_state(
@@ -45,9 +43,10 @@ def predict_ocr(self, file_path: str):
             }
         )
         raise Ignore()
+    image= cv2.imread(file_path)
+    data = ocr.predict_text(image=image, return_option='normal')
     try:
-        y= cv2.imread(file_path)
-        data = ocr.predict_text(image=y, return_option='normal')
+        pass
     except Exception as e:
         logging.error('Can not load predict: {}'.format(str(e)))
         self.update_state(

@@ -1,68 +1,419 @@
-[2021-08-09 05:48:56,438: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
-[2021-08-09 05:48:56,453: INFO/MainProcess] mingle: searching for neighbors
-[2021-08-09 05:48:57,493: INFO/MainProcess] mingle: all alone
-[2021-08-09 05:48:57,518: INFO/MainProcess] celery@1cc9202b2f2a ready.
-[2021-08-09 05:48:57,520: INFO/MainProcess] Task ml.predict_ocr[38a22bdc-53f0-4395-bae3-18d7fc786f8d] received
-[2021-08-09 05:48:57,521: INFO/MainProcess] Task ml.predict_ocr[556de1a2-10b7-484b-a905-0475052cdb4e] received
-[2021-08-09 05:48:57,684: ERROR/ForkPoolWorker-2] Task ml.predict_ocr[556de1a2-10b7-484b-a905-0475052cdb4e] raised unexpected: TypeError('__init__() takes 5 positional arguments but 6 were given')
+[2021-08-09 06:23:37,158: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:23:37,174: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:23:38,232: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:23:38,256: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:23:48,042: INFO/MainProcess] Task ml.predict_ocr[3465569a-79d3-420a-84e7-d5d8076234d4] received
+[2021-08-09 06:23:50,709: ERROR/ForkPoolWorker-1] Can not load predict: Cannot handle this data type: (1, 1, 455, 3), |u1
+[2021-08-09 06:23:50,724: INFO/ForkPoolWorker-1] Task ml.predict_ocr[3465569a-79d3-420a-84e7-d5d8076234d4] ignored
+[2021-08-09 06:26:02,100: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:26:02,106: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:26:02,116: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:26:18,313: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:26:18,329: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:26:19,364: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:26:19,386: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:26:19,388: INFO/MainProcess] Task ml.predict_ocr[774e6ba3-d35f-4c72-908f-2d5c87d0ec5b] received
+[2021-08-09 06:26:22,550: ERROR/ForkPoolWorker-1] Can not load predict: unsupported operand type(s) for /: 'Image' and 'float'
+[2021-08-09 06:26:22,589: INFO/ForkPoolWorker-1] Task ml.predict_ocr[774e6ba3-d35f-4c72-908f-2d5c87d0ec5b] ignored
+[2021-08-09 06:27:23,812: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:27:23,825: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:27:24,869: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:27:24,893: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:27:27,038: INFO/MainProcess] Task ml.predict_ocr[fa37118c-c022-4f03-b0d9-877aa0efe383] received
+[2021-08-09 06:27:29,684: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[fa37118c-c022-4f03-b0d9-877aa0efe383] raised unexpected: TypeError("unsupported operand type(s) for /: 'Image' and 'float'")
 Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
     R = retval = fun(*args, **kwargs)
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
     return self.run(*args, **kwargs)
-  File "/app/worker/celery.py", line 32, in predict_ocr
-    ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
-  File "/app/worker/ml/model.py", line 10, in __init__
-    self.model = self._load_model_from_path(path_to_checkpoint)
-  File "/app/worker/ml/model.py", line 15, in _load_model_from_path
-    return TextRecognition(path_to_checkpoint=path)
-  File "/app/worker/ml/recognition.py", line 14, in __init__
-    self.detector = Predictor(self.config)
-  File "/app/worker/ml/predictor.py", line 13, in __init__
-    model, vocab = build_model(config)
-  File "/app/worker/ml/translate.py", line 112, in build_model
-    model = VietOCR(len(vocab),
-TypeError: __init__() takes 5 positional arguments but 6 were given
-[2021-08-09 05:48:57,684: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[38a22bdc-53f0-4395-bae3-18d7fc786f8d] raised unexpected: TypeError('__init__() takes 5 positional arguments but 6 were given')
+  File "/app/worker/celery.py", line 47, in predict_ocr
+    data = ocr.predict_text(image=image, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 23, in predict
+    img = img / 255.0
+TypeError: unsupported operand type(s) for /: 'Image' and 'float'
+[2021-08-09 06:29:17,387: INFO/MainProcess] Task ml.predict_ocr[f9c60e86-744d-4d36-b8d6-c44012b8ed2a] received
+[2021-08-09 06:29:19,811: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[f9c60e86-744d-4d36-b8d6-c44012b8ed2a] raised unexpected: TypeError("unsupported operand type(s) for /: 'Image' and 'float'")
 Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
     R = retval = fun(*args, **kwargs)
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
     return self.run(*args, **kwargs)
-  File "/app/worker/celery.py", line 32, in predict_ocr
-    ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
-  File "/app/worker/ml/model.py", line 10, in __init__
-    self.model = self._load_model_from_path(path_to_checkpoint)
-  File "/app/worker/ml/model.py", line 15, in _load_model_from_path
-    return TextRecognition(path_to_checkpoint=path)
-  File "/app/worker/ml/recognition.py", line 14, in __init__
-    self.detector = Predictor(self.config)
-  File "/app/worker/ml/predictor.py", line 13, in __init__
-    model, vocab = build_model(config)
-  File "/app/worker/ml/translate.py", line 112, in build_model
-    model = VietOCR(len(vocab),
-TypeError: __init__() takes 5 positional arguments but 6 were given
-[2021-08-09 05:49:11,493: INFO/MainProcess] Task ml.predict_ocr[29863297-3416-454e-b1ae-a45491f60cc3] received
-[2021-08-09 05:49:11,533: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[29863297-3416-454e-b1ae-a45491f60cc3] raised unexpected: TypeError('__init__() takes 5 positional arguments but 6 were given')
+  File "/app/worker/celery.py", line 47, in predict_ocr
+    image_arr = np.array(image)
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 23, in predict
+    img = img / 255.0
+TypeError: unsupported operand type(s) for /: 'Image' and 'float'
+[2021-08-09 06:29:47,198: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:29:47,214: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:29:48,253: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:29:48,275: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:29:48,919: INFO/MainProcess] Task ml.predict_ocr[c54a4f9e-139d-470a-9caf-73a6289b7889] received
+[2021-08-09 06:29:51,651: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[c54a4f9e-139d-470a-9caf-73a6289b7889] raised unexpected: TypeError("unsupported operand type(s) for /: 'Image' and 'float'")
 Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
     R = retval = fun(*args, **kwargs)
   File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
     return self.run(*args, **kwargs)
-  File "/app/worker/celery.py", line 32, in predict_ocr
-    ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
-  File "/app/worker/ml/model.py", line 10, in __init__
-    self.model = self._load_model_from_path(path_to_checkpoint)
-  File "/app/worker/ml/model.py", line 15, in _load_model_from_path
-    return TextRecognition(path_to_checkpoint=path)
-  File "/app/worker/ml/recognition.py", line 14, in __init__
-    self.detector = Predictor(self.config)
-  File "/app/worker/ml/predictor.py", line 13, in __init__
-    model, vocab = build_model(config)
-  File "/app/worker/ml/translate.py", line 112, in build_model
-    model = VietOCR(len(vocab),
-TypeError: __init__() takes 5 positional arguments but 6 were given
-[2021-08-09 06:02:43,540: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
-[2021-08-09 06:02:43,555: INFO/MainProcess] mingle: searching for neighbors
-[2021-08-09 06:02:44,602: INFO/MainProcess] mingle: all alone
-[2021-08-09 06:02:44,646: INFO/MainProcess] celery@1cc9202b2f2a ready.
+  File "/app/worker/celery.py", line 48, in predict_ocr
+    data = ocr.predict_text(image=image_arr, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 23, in predict
+    img = img / 255.0
+TypeError: unsupported operand type(s) for /: 'Image' and 'float'
+[2021-08-09 06:31:34,792: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:31:34,798: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:31:34,811: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:31:49,593: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:31:49,610: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:31:50,658: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:31:50,682: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:31:55,229: INFO/MainProcess] Task ml.predict_ocr[b2e932b3-dbe9-46e1-b225-bcf7fb1a4e17] received
+[2021-08-09 06:31:57,667: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[b2e932b3-dbe9-46e1-b225-bcf7fb1a4e17] raised unexpected: TypeError("unsupported operand type(s) for /: 'Image' and 'float'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 48, in predict_ocr
+    data = ocr.predict_text(image=image_arr, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 23, in predict
+    img = img / 255.0
+TypeError: unsupported operand type(s) for /: 'Image' and 'float'
+[2021-08-09 06:33:41,883: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:33:41,894: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:33:42,931: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:33:42,953: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:33:45,825: INFO/MainProcess] Task ml.predict_ocr[b8b00f2c-4209-4b3e-88c3-232888d84b42] received
+[2021-08-09 06:33:48,541: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[b8b00f2c-4209-4b3e-88c3-232888d84b42] raised unexpected: AttributeError('__array_interface__')
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 47, in predict_ocr
+    data = ocr.predict_text(image=image, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 62, in predict
+    image = Image.fromarray(image)
+  File "/usr/local/lib/python3.9/site-packages/PIL/Image.py", line 2818, in fromarray
+    arr = obj.__array_interface__
+  File "/usr/local/lib/python3.9/site-packages/PIL/Image.py", line 546, in __getattr__
+    raise AttributeError(name)
+AttributeError: __array_interface__
+[2021-08-09 06:37:04,180: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:37:04,182: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:37:04,194: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:37:23,306: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:37:23,321: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:37:24,384: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:37:24,430: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:37:24,432: INFO/MainProcess] Task ml.predict_ocr[454ce5b2-8fbc-4249-ba76-9fec70e0d6cb] received
+[2021-08-09 06:37:27,273: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[454ce5b2-8fbc-4249-ba76-9fec70e0d6cb] raised unexpected: TypeError("unsupported operand type(s) for /: 'JpegImageFile' and 'float'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 47, in predict_ocr
+    data = ocr.predict_text(image=image, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 23, in predict
+    img = img / 255.0
+TypeError: unsupported operand type(s) for /: 'JpegImageFile' and 'float'
+[2021-08-09 06:42:11,072: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:42:11,078: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:42:11,089: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:42:28,418: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:42:28,432: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:42:29,476: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:42:29,502: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:42:29,503: INFO/MainProcess] Task ml.predict_ocr[23afe3d5-6e2c-40de-b849-196933fb84b1] received
+[2021-08-09 06:42:32,723: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[23afe3d5-6e2c-40de-b849-196933fb84b1] raised unexpected: TypeError("'mode' is an invalid keyword argument for imread()")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 46, in predict_ocr
+    image= cv2.imread('./1.jpg', mode='RGB')
+TypeError: 'mode' is an invalid keyword argument for imread()
+[2021-08-09 06:43:23,811: INFO/MainProcess] Task ml.predict_ocr[c3f9ad33-5e06-4bc0-99c3-8ddb4b253270] received
+[2021-08-09 06:43:26,126: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[c3f9ad33-5e06-4bc0-99c3-8ddb4b253270] raised unexpected: TypeError("'mode' is an invalid keyword argument for imread()")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 46, in predict_ocr
+    image= cv2.imread('./1.jpg')
+TypeError: 'mode' is an invalid keyword argument for imread()
+[2021-08-09 06:43:55,118: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:43:55,130: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:43:56,165: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:43:56,190: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:43:58,516: INFO/MainProcess] Task ml.predict_ocr[d743177a-0ad8-4f13-bbe7-ca91d64bfab2] received
+[2021-08-09 06:44:01,114: ERROR/ForkPoolWorker-1] Task ml.predict_ocr[d743177a-0ad8-4f13-bbe7-ca91d64bfab2] raised unexpected: ValueError('not enough values to unpack (expected 3, got 2)')
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 450, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/celery/app/trace.py", line 731, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/app/worker/celery.py", line 50, in predict_ocr
+    data = ocr.predict_text(image=img_gray, return_option='normal')
+  File "/app/worker/ml/model.py", line 26, in predict_text
+    predictions = self.model.predict(image)
+  File "/app/worker/ml/recognition.py", line 63, in predict
+    result = self.detector.predict(image)
+  File "/app/worker/ml/predictor.py", line 24, in predict
+    img = self.preprocess_input(img)
+  File "/app/worker/ml/predictor.py", line 75, in preprocess_input
+    h, w, _ = image.shape
+ValueError: not enough values to unpack (expected 3, got 2)
+[2021-08-09 06:45:19,202: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:45:19,218: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:45:20,264: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:45:20,288: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:45:20,979: INFO/MainProcess] Task ml.predict_ocr[74a7d94c-dbc6-47b0-8754-201bc8a2c07e] received
+[2021-08-09 06:45:28,318: INFO/ForkPoolWorker-1] Task ml.predict_ocr[74a7d94c-dbc6-47b0-8754-201bc8a2c07e] succeeded in 7.336201800000708s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 06:46:54,847: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:46:54,862: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:46:55,900: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:46:55,919: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:46:55,921: INFO/MainProcess] Task ml.predict_ocr[c3876801-c1df-4d8c-b270-9f0347ccde64] received
+[2021-08-09 06:47:03,523: INFO/ForkPoolWorker-1] Task ml.predict_ocr[c3876801-c1df-4d8c-b270-9f0347ccde64] succeeded in 7.499823899999683s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 06:47:27,804: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:47:27,807: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:47:27,816: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:47:44,207: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:47:44,220: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:47:45,265: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:47:45,307: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:47:56,649: INFO/MainProcess] Task ml.predict_ocr[424436fb-7612-4900-958f-7aa0f05efd0d] received
+[2021-08-09 06:48:04,400: INFO/ForkPoolWorker-1] Task ml.predict_ocr[424436fb-7612-4900-958f-7aa0f05efd0d] succeeded in 7.748193500001435s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 06:50:26,728: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:50:26,743: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:50:27,786: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:50:27,811: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:51:20,540: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:51:20,548: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
