@@ -2,19 +2,14 @@ from pydantic import BaseModel
 from typing import Any, Optional, List
 
 
-
-class OcrParam(BaseModel):
-    image: Optional[Any]
+class UrlItem(BaseModel):
+    file_path: str
     callback: bool = False
 
 
-class OcrBatchParam(BaseModel):
-    batch: List[Optional[Any]]
-    callback: bool = False
-
-
-class OcrResponse(BaseModel):
+class TaskResult(BaseModel):
     id: str
     status: str
     error: Optional[str] = None
     result: Optional[Any] = None
+
