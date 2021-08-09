@@ -1,12 +1,10 @@
-from PIL import Image
 import os
 import gdown
 import yaml
-from worker.ml.predictor import Predictor
+from worker.ocr.predictor import Predictor
+from settings import ocr_config
 
 
-FILE_BASE = './worker/ml/config/base.yml'
-FILE_CONFIG = './worker/ml/config/vgg-transformer.yml'
 
 class TextRecognition(object):
     def __init__(self, path_to_checkpoint):
@@ -19,14 +17,14 @@ class TextRecognition(object):
         url_config_vgg_transformers = '1TF8effeufpgkHqQFlmNWKsQtCMfDiooa'
 
         # load base config
-        if os.path.isfile(FILE_BASE):
-            base_config = self.read_from_config(file_yml=FILE_BASE)
+        if os.path.isfile(ocr_config.FILE_BASE):
+            base_config = self.read_from_config(file_yml=ocr_config.FILE_BASE)
         else:
             base_config = self.download_config(url_base)
 
         # load vgg transformer config
-        if os.path.isfile(FILE_CONFIG):
-            config = self.read_from_config(file_yml=FILE_CONFIG)
+        if os.path.isfile(ocr_config.FILE_CONFIG):
+            config = self.read_from_config(file_yml=ocr_config.FILE_CONFIG)
         else:
             config = self.download_config(url_config_vgg_transformers)
 

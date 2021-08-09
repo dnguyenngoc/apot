@@ -1,5 +1,4 @@
-import logging
-from worker.ml.recognition import TextRecognition
+from worker.ocr.recognition import TextRecognition
 
 
 class OcrModel(object):

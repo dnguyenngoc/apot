@@ -1,16 +1,15 @@
-from logging import log
 import logging
 from celery import Celery
 from celery import Celery, states
+import celery
 from celery.exceptions import Ignore
 import traceback
 
-from numpy.lib.type_check import imag
 from worker.redis import is_backend_running, get_backend_url
 from worker.broker import is_broker_running, get_broker_url
-from worker.ml.model import OcrModel
+from worker.ocr.model import OcrModel
 from helpers.image import read_from_path, read_from_url
-
+from settings import ocr_config
 
 if not is_backend_running():
     exit()
@@ -18,21 +17,21 @@ if not is_backend_running():
 if not is_broker_running():
     exit()
 
-ml  = Celery(
-    'ml',  
+
+app  = Celery(
+    ocr_config.CELERY_NAME,  
     broker=get_broker_url(),
     backend=get_backend_url(),
 )
 
-ml.config_from_object('worker.ml.config')
 
-MODEL_PATH = './worker/ml/config/transformerocr.pth'
+app.config_from_object('worker.{}.celery_config'.format(ocr_config.CELERY_NAME))
 
 
-@ml.task(bind=True, name="ml.predict_ocr")
-def predict_ocr(self, file_path: str, action_type: str):  
+@app.task(bind=True, name="{}.predict".format(ocr_config.CELERY_NAME))
+def predict(self, file_path: str, action_type: str):  
     try:
-        ocr = OcrModel(path_to_checkpoint=MODEL_PATH)
+        ocr = OcrModel(path_to_checkpoint=ocr_config.MODEL_PATH)
     except Exception as e:
         logging.error('Can not load model: {}'.format(str(e)))
         self.update_state(

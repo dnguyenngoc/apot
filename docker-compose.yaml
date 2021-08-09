@@ -42,7 +42,7 @@ services:
 
   worker:
     image: duynguyenngoc/apot:backend
-    command: celery -A worker.celery.ml worker --loglevel=info --concurrency=2 --queues ml -E  --logfile=logs/celery.log
+    command: celery -A worker.ocr.celery.app worker --loglevel=info --concurrency=2 -E --logfile=logs/celery.log
     volumes:
       - ./backend/app:/app
     environment:

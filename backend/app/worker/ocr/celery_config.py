@@ -1,5 +1,6 @@
 """Module with Celery configurations to Audio Length worker."""
 from kombu import Queue
+from settings import ocr_config
 
 # Set worker to ack only when return or failing (unhandled expection)
 task_acks_late = True
@@ -8,7 +9,7 @@ task_acks_late = True
 worker_prefetch_multiplier = 1
 
 # Create queue for worker
-task_queues = [Queue(name="ml")]
+task_queues = [Queue(name=ocr_config.CELERY_NAME)]
 
 # Set Redis key TTL (Time to live)
 result_expires = 60 * 60 * 48  # 48 hours in seconds

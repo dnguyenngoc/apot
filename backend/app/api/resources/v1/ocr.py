@@ -12,20 +12,20 @@ from starlette.status import (
 from fastapi import BackgroundTasks
 from settings import config
 from api.entities.ocr import TaskResult, UrlItem
-
+from settings import ocr_config
 
 router = APIRouter()
 
 
-ml = Celery(broker=config.BROKER, backend=config.REDIS_BACKEND)
+ocr = Celery(broker=config.BROKER, backend=config.REDIS_BACKEND)
 
     
-TASKS = {'ocr': 'ml.predict_ocr',}
+TASKS = {'ocr_predict': '{}.predict'.format(ocr_config.CELERY_NAME),}
 
 
 def send_result(task_id):
     while True:
-        result = ml.AsyncResult(task_id)
+        result = ocr.AsyncResult(task_id)
         if result.state in states.READY_STATES:
             break
     output = TaskResult(
@@ -42,10 +42,10 @@ def get_lenght_image(
     data: UrlItem,
     queue: BackgroundTasks
 ):
-    task = ml.send_task(
-        name=TASKS['ocr'],
+    task = ocr.send_task(
+        name=TASKS['ocr_predict'],
         kwargs={'file_path': data.file_path, 'action_type': data.action_type},
-        queue='ml'
+        queue=ocr_config.CELERY_NAME
     )
     if data.callback:
         queue.add_task(send_result, task.id)
@@ -54,7 +54,7 @@ def get_lenght_image(
 
 @router.get("/task/{task_id}")
 def get_task_result(task_id: str):
-    result = ml.AsyncResult(task_id)
+    result = ocr.AsyncResult(task_id)
     output = TaskResult(
         id=task_id,
         status=result.state,

@@ -1,31 +1,16 @@
-# Fast API
-uvicorn==0.13.4
-fastapi==0.63.0
-python-multipart==0.0.5
 psycopg2-binary==2.8.6
 configparser==5.0.2
-passlib==1.7.4
-python-jose==3.2.0
-pycryptodome==3.10.1
-alembic==1.6.5
 webdavclient3==3.14.5
 datetime==4.3
-ldap3==2.9.1
 celery==5.1.2
 flower==1.0.0
 redis==3.5.3
-aiofiles==0.7.0
-Jinja2==3.0.1
 
 # Deep Learning document classify
-elasticsearch==7.13.4
-nltk==3.6.2
 transformers==4.9.1
 torchvision==0.10.0
-pytesseract==0.3.8
 opencv-python==4.5.3.56
 numpy==1.21.1
-#pythonRLSA==1.0.0
 scikit-learn==0.24.2
 matplotlib==3.4.2
 scikit-image==0.18.2
