@@ -1,6 +1,7 @@
 # backend
 __pycache__
 logs/fastapi/*
+transformerocr.pth
 
 # noteboock
 .ipynb_checkpoints

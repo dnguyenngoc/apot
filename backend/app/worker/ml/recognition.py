@@ -1,7 +1,8 @@
 from PIL import Image
 import os
+import gdown
 import yaml
-from predictor import Predictor
+from worker.ml.predictor import Predictor
 
 
 FILE_BASE = './worker/ml/config/base.yml'
@@ -12,10 +13,22 @@ class TextRecognition(object):
         self.config = self.load_config(path_to_checkpoint)
         self.detector = Predictor(self.config)
 
-
+    
     def load_config(self, path_to_checkpoint):
-        base_config = self.read_from_config(file_yml=FILE_BASE)
-        config = self.read_from_config(file_yml=FILE_CONFIG)
+        url_base = '1xiw7ZnT3WH_9HXoGpLbhW-m2Sm2nlthi'
+        url_config_vgg_transformers = '1TF8effeufpgkHqQFlmNWKsQtCMfDiooa'
+
+        # load base config
+        if os.path.isfile(FILE_BASE):
+            base_config = self.read_from_config(file_yml=FILE_BASE)
+        else:
+            base_config = self.download_config(url_base)
+
+        # load vgg transformer config
+        if os.path.isfile(FILE_CONFIG):
+            config = self.read_from_config(file_yml=FILE_CONFIG)
+        else:
+            config = self.download_config(url_config_vgg_transformers)
 
         # update base config
         base_config.update(config)
@@ -27,6 +40,16 @@ class TextRecognition(object):
 
         return base_config
 
+
+    @staticmethod
+    def download_config(url_id):
+        url = 'https://drive.google.com/uc?id={}'.format(url_id)
+        output = gdown.download(url, quiet=True)
+
+        with open(output, encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+
+        return config
 
     @staticmethod
     def read_from_config(file_yml):
