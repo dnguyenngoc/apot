@@ -1,13 +1,7 @@
 # import
 from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-from fastapi.param_functions import Form
 
 # import
-from securities import ldap
-from fastapi import File, UploadFile
-from celery.result import AsyncResult
 from fastapi.responses import JSONResponse
 
 from celery import Celery, states
@@ -16,11 +10,7 @@ from starlette.status import (
     HTTP_201_CREATED
 )
 from fastapi import BackgroundTasks
-from fastapi import UploadFile, Form, File
 from settings import config
-import cv2
-import numpy as np
-
 from api.entities.ocr import TaskResult, UrlItem
 
 

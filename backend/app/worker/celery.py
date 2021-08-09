@@ -61,5 +61,5 @@ def predict_ocr(self, file_path: str):
         raise Ignore()
     
     return {
-        'data': data
+        'text': data
     }
