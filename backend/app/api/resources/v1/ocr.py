@@ -14,7 +14,6 @@ from settings import config
 from api.entities.ocr import TaskResult, UrlItem
 
 
-
 router = APIRouter()
 
 
