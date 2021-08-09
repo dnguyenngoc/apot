@@ -11,17 +11,17 @@ services:
 
 
   broker:
-    image: rabbitmq:latest
+    image: rabbitmq:3-management-alpine
     ports:
       - "5672:5672"
-      - "55672:55672"
+      - '15672:15672'
     environment:
       - DEFAULT_USER=guest
       - DEFAULT_PASS=guest
 
 
   backend:
-    image: duynguyenngoc/apot:base
+    image: duynguyenngoc/apot:backend
     ports:
       - 8081:8081
     command: uvicorn main:app --host 0.0.0.0 --port 8081 --reload
@@ -41,7 +41,7 @@ services:
       - broker
 
   worker:
-    image: duynguyenngoc/apot:base
+    image: duynguyenngoc/apot:backend
     command: celery -A worker.celery.ml worker --loglevel=info --concurrency=2 --queues ml -E  --logfile=logs/celery.log
     volumes:
       - ./backend/app:/app
