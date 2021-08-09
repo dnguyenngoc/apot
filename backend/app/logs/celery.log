@@ -417,3 +417,195 @@ In Celery 5.1 it is set to False by default. The setting will be set to True by 
 
   warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
 
+[2021-08-09 06:51:39,712: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:51:39,725: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:51:40,767: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:51:40,789: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:52:39,908: INFO/MainProcess] Task ml.predict_ocr[f8d4a505-dd20-44e2-946d-2e31d1a5466f] received
+[2021-08-09 06:52:48,332: INFO/ForkPoolWorker-1] Task ml.predict_ocr[f8d4a505-dd20-44e2-946d-2e31d1a5466f] succeeded in 8.419448300001022s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 06:53:00,322: INFO/MainProcess] Task ml.predict_ocr[80329efa-9bab-49db-ad01-affd16c72197] received
+[2021-08-09 06:53:16,450: INFO/ForkPoolWorker-1] Task ml.predict_ocr[80329efa-9bab-49db-ad01-affd16c72197] succeeded in 16.125234699999055s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 06:56:05,664: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 06:56:05,668: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 06:56:05,683: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 06:56:24,504: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 06:56:24,520: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 06:56:25,555: INFO/MainProcess] mingle: all alone
+[2021-08-09 06:56:25,573: INFO/MainProcess] celery@1cc9202b2f2a ready.
+[2021-08-09 06:56:44,214: INFO/MainProcess] Task ml.predict_ocr[bcb4084c-ce2f-4600-aa5e-4674d571f593] received
+[2021-08-09 06:56:51,582: INFO/ForkPoolWorker-1] Task ml.predict_ocr[bcb4084c-ce2f-4600-aa5e-4674d571f593] succeeded in 7.365064800000255s: {'data': 'Tiếng Việt, cũng gọi là tiếng Việt Nam Việt ngữ là ngôn ngữ của người Việt'}
+[2021-08-09 07:18:03,999: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 07:18:04,026: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 07:18:05,064: INFO/MainProcess] mingle: all alone
+[2021-08-09 07:18:05,103: INFO/MainProcess] celery@a438d73cbd41 ready.
+[2021-08-09 07:19:54,145: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 07:19:54,149: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 07:20:36,530: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 07:20:36,542: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 07:20:37,582: INFO/MainProcess] mingle: all alone
+[2021-08-09 07:20:37,645: INFO/MainProcess] celery@7b5ad0a251f7 ready.
+[2021-08-09 07:21:36,939: INFO/MainProcess] Task ml.predict_ocr[83961a94-030e-424a-9ea8-32d766a01110] received
+[2021-08-09 07:21:36,969: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:21:36,999: INFO/ForkPoolWorker-1] Task ml.predict_ocr[83961a94-030e-424a-9ea8-32d766a01110] ignored
+[2021-08-09 07:21:37,781: INFO/MainProcess] Task ml.predict_ocr[a9a2036b-01fb-4fc7-abc0-fd5d486f9eda] received
+[2021-08-09 07:21:37,812: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:21:37,837: INFO/ForkPoolWorker-1] Task ml.predict_ocr[a9a2036b-01fb-4fc7-abc0-fd5d486f9eda] ignored
+[2021-08-09 07:21:39,307: INFO/MainProcess] Task ml.predict_ocr[7c91aee0-a36a-4bd1-84c5-b92230348ebe] received
+[2021-08-09 07:21:39,341: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:21:39,365: INFO/ForkPoolWorker-1] Task ml.predict_ocr[7c91aee0-a36a-4bd1-84c5-b92230348ebe] ignored
+[2021-08-09 07:21:39,755: INFO/MainProcess] Task ml.predict_ocr[5db3ff4a-840c-4187-be45-5c9e53861e7e] received
+[2021-08-09 07:21:39,786: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:21:39,811: INFO/ForkPoolWorker-1] Task ml.predict_ocr[5db3ff4a-840c-4187-be45-5c9e53861e7e] ignored
+[2021-08-09 07:21:40,109: INFO/MainProcess] Task ml.predict_ocr[0872a0ed-9853-47c8-81d8-e5378b428d54] received
+[2021-08-09 07:21:40,139: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:21:40,161: INFO/ForkPoolWorker-1] Task ml.predict_ocr[0872a0ed-9853-47c8-81d8-e5378b428d54] ignored
+[2021-08-09 07:23:54,443: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 07:23:54,446: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 07:23:54,456: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-09 07:24:37,353: INFO/MainProcess] Connected to amqp://guest:**@broker:5672//
+[2021-08-09 07:24:37,364: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-09 07:24:38,401: INFO/MainProcess] mingle: all alone
+[2021-08-09 07:24:38,431: INFO/MainProcess] celery@a4e52a1ca57b ready.
+[2021-08-09 07:24:38,432: INFO/MainProcess] Task ml.predict_ocr[51b9e7c3-dde8-4f53-ab5f-0cb6250a79a5] received
+[2021-08-09 07:24:38,559: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:24:38,585: INFO/ForkPoolWorker-1] Task ml.predict_ocr[51b9e7c3-dde8-4f53-ab5f-0cb6250a79a5] ignored
+[2021-08-09 07:25:02,130: INFO/MainProcess] Task ml.predict_ocr[43c5e44f-5bed-4094-9057-388ffed95492] received
+[2021-08-09 07:25:02,160: ERROR/ForkPoolWorker-1] Can not load model: __init__() takes 5 positional arguments but 6 were given
+[2021-08-09 07:25:02,184: INFO/ForkPoolWorker-1] Task ml.predict_ocr[43c5e44f-5bed-4094-9057-388ffed95492] ignored
+[2021-08-09 07:25:13,819: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.9/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.9/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 235, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python3.9/site-packages/kombu/transport/base.py", line 217, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 523, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python3.9/site-packages/amqp/connection.py", line 528, in blocking_read
+    frame = self.transport.read_frame()
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 299, in read_frame
+    frame_header = read(7, True)
+  File "/usr/local/lib/python3.9/site-packages/amqp/transport.py", line 628, in _read
+    s = recv(n - len(rbuf))
+ConnectionResetError: [Errno 104] Connection reset by peer
+[2021-08-09 07:25:13,826: WARNING/MainProcess] /usr/local/lib/python3.9/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-09 07:25:13,858: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@broker:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds... (1/100)
+

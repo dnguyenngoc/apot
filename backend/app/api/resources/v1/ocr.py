@@ -62,7 +62,7 @@ class TaskResult(BaseModel):
 
 
 
-@router.post("/ml/image/predict", status_code=HTTP_201_CREATED)
+@router.post("/image/predict", status_code=HTTP_201_CREATED)
 def get_lenght_image(data: UrlItem, queue: BackgroundTasks):
     task = ml.send_task(
         name=TASKS['ocr'],

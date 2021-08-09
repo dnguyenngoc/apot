@@ -9,8 +9,7 @@ import traceback
 from worker.redis import is_backend_running, get_backend_url
 from worker.broker import is_broker_running, get_broker_url
 from worker.ml.model import OcrModel
-import numpy as np
-from PIL import Image
+
 
 if not is_backend_running():
     exit()
@@ -23,6 +22,8 @@ ml  = Celery(
     broker=get_broker_url(),
     backend=get_backend_url(),
 )
+
+ml.config_from_object('worker.ml.config')
 
 MODEL_PATH = './worker/ml/config/transformerocr.pth'
 
@@ -43,10 +44,10 @@ def predict_ocr(self, file_path: str):
             }
         )
         raise Ignore()
-    image= cv2.imread(file_path)
-    data = ocr.predict_text(image=image, return_option='normal')
+
     try:
-        pass
+        image= cv2.imread(file_path)
+        data = ocr.predict_text(image=image, return_option='normal')
     except Exception as e:
         logging.error('Can not load predict: {}'.format(str(e)))
         self.update_state(
